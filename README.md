@@ -24,3 +24,5 @@ invalidate('my-key');
 
 This invalidation even works across tabs, so if you have multiple tabs open and you invalidate a key,
 that key will be invalidated in all tabs.
+
+It internally uses `BroadcastChanel` to do this. If you want the cross-tab functionality to work in browser that don't support `BroadcastChanel` (like IE), you must use a polyfill. (Single tab functionality will still work)
