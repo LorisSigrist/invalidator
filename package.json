@@ -1,0 +1,26 @@
+{
+  "name": "invalidator",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "import": "./lib/index.js"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.31.2",
+    "vite": "^4.0.4",
+    "vitest": "^0.29.3"
+  }
+}
