@@ -1,6 +1,7 @@
 {
   "name": "invalidator",
-  "private": true,
+  "access": "public",
+
   "version": "1.0.0",
   "type": "module",
   "files": [
