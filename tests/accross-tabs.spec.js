@@ -75,3 +75,28 @@ test("Invalidation gets propagated across multiple tabs with multiple dependents
     await expect(page3.getByTestId("invalidations_1")).toHaveText("2");
     await expect(page3.getByTestId("invalidations_2")).toHaveText("2");
 });
+
+test("Unsubscribing from a dependent works", async ({ context }) => {
+    const page1 = await context.newPage();
+    const page2 = await context.newPage();
+    const page3 = await context.newPage();
+
+    await page1.goto("/");
+    await page2.goto("/");
+    await page3.goto("/");
+
+    await page1.getByTestId("btn").click();
+    await expect(page1.getByTestId("capped_count")).toHaveText("1");
+    await expect(page2.getByTestId("capped_count")).toHaveText("1");
+    await expect(page3.getByTestId("capped_count")).toHaveText("1");
+
+    await page2.getByTestId("btn").click();
+    await expect(page1.getByTestId("capped_count")).toHaveText("2");
+    await expect(page2.getByTestId("capped_count")).toHaveText("2");
+    await expect(page3.getByTestId("capped_count")).toHaveText("2");
+
+    await page3.getByTestId("btn").click();
+    await expect(page1.getByTestId("capped_count")).toHaveText("2");
+    await expect(page2.getByTestId("capped_count")).toHaveText("2");
+    await expect(page3.getByTestId("capped_count")).toHaveText("2");
+});
